@@ -14,7 +14,11 @@ const routes: Routes = [
             {   path:':personId' , 
                 component: PersonDetailsComponent,
                 resolve: {
-                    person: PeopleDataResolver //Obtener a partir de PEopleDataREsolver el parametro person.
+                    person: PeopleDataResolver, //Obtener a partir de PEopleDataREsolver el parametro person.
+                    persona: PeopleDataResolver
+                },
+                data: {
+                    showDetails: true //Es lo mismo que resolve pero para valores, no para Observables.
                 }
             }
         ]

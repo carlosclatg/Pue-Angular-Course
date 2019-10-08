@@ -1,21 +1,15 @@
+<div *ngIf="showDetails">
 <p>
-    {{person.id}}
+        {{person.id}}
+    </p>
+    
+    <p>
+        {{person.name}}
+    </p>
 
+    <p>
+        {{person | json}}
+    </p>
+    <button (click)="goBack()"> GO BACK</button>
 
-</p>
-
-<p>
-    {{person.name}}
-
-
-</p>
-
-<p>
-    {{person | json}}
-
-
-</p>
-
-
-<button (click)="goBack()"> GO BACK</button>
-
+</div>

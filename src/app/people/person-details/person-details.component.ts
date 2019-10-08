@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { PeopleService } from '../people.service';
-import { ActivatedRoute, Route } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import {switchMap, takeUntil} from 'rxjs/operators';
 import { Location } from '@angular/common';
 import { Subject } from 'rxjs';
@@ -18,9 +18,14 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
   
   person;
   onDestroy = new Subject(); //para liberar memoria
+  persona2: any;
+  showDetails: boolean;
 
-  constructor(private peopleService: PeopleService, private activeRoute: ActivatedRoute,
-    private location: Location) { }
+  constructor( 
+    private activeRoute: ActivatedRoute,
+    private location: Location,
+    private router: Router
+  ) { }
   
   goBack(): void {
     this.location.back();
@@ -33,9 +38,20 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    
     this.activeRoute.data
-      .subscribe(person => this.person= person)
+      .pipe(
+        takeUntil(this.onDestroy)
+      )
+      .subscribe(ResolverData => {  
+        console.log(ResolverData)
+        if(ResolverData.person){
+          this.person=ResolverData.person
+        } else {
+          this.router.navigateByUrl('/home')
+          .then(console.log)
+        }
+        this.showDetails = ResolverData.showDetails 
+      })
     
     /**
      * this.activeRoute.params.subscribe(params => {
