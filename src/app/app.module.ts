@@ -7,7 +7,7 @@ import { RouterModule, Routes } from '@angular/router'
 import { NotFoundComponent } from './not-found/not-found.component';
 import { PeopleModule } from './people/people.module';
 
-const routes: Routes = [
+const routes: Routes = [  
   {path: '' , redirectTo: '/home', pathMatch: 'full'}, //path
   {path: 'home' , component: HomeComponent },
   {path: 'about' , component: AboutComponent },   //la props principales son el path y component, hace match de path y muestra comp

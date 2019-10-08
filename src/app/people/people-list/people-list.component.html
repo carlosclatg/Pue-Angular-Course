@@ -1,0 +1,11 @@
+<p>people-list works!</p>
+
+<ul>
+    <li *ngFor="let person of peopleService.getPeople() | async">
+        <a routerLink="/people/{{person.id}}">{{person.name}}</a>
+        
+    </li>
+</ul>
+
+
+<router-outlet></router-outlet>
