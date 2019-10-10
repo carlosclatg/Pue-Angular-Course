@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthServiceService } from './auth-service.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Routas';
+  constructor(public authService: AuthServiceService){} //Se pone public para acceder desde el template
+  
 }
