@@ -2,10 +2,16 @@
 
 <ul>
     <li *ngFor="let person of peopleService.getPeople() | async">
-        <a routerLink="/people/{{person.id}}">{{person.name}}</a>
+        <a 
+            routerLink="/people/{{person.id}}"
+            [queryParams]="activeRoute.queryParams | async"
+        >
+            {{person.name}}
+        </a>
         
     </li>
 </ul>
 
+<!--[queryParams]="activeRoute.queryParams | async" mantiene los query parameters de la URL que hayamos puesto-->
 
 <router-outlet></router-outlet>

@@ -4,6 +4,7 @@ import { ActivatedRoute, Route, Router } from '@angular/router';
 import {switchMap, takeUntil} from 'rxjs/operators';
 import { Location } from '@angular/common';
 import { Subject } from 'rxjs';
+import { relative } from 'path';
 
 
 
@@ -28,7 +29,12 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
   ) { }
   
   goBack(): void {
-    this.location.back();
+    //this.location.back();
+    this.router.navigate(
+      ['../'],
+      {relativeTo : this.activeRoute}
+    )
+    .then(console.log) //navega un nivel hacia arriba.
   }
   
   ngOnDestroy(): void {

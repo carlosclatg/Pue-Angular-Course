@@ -8,7 +8,7 @@ import { PeopleDataResolver } from './people-data-resolver';
 const routes: Routes = [
     //{path: 'people/:personId' , component: PersonDetailsComponent}, es lo mismo que 
 
-    {path: 'people', 
+    {path: '', //ruta por defecto cuando entramos al modulo de rutas de people.
         component: PeopleListComponent,
         children: [ //al tener rutas hijas tiene que haber un router-outlet dentro de este compo.
             {   path:':personId' , 
