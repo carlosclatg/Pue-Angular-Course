@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate } from '@angular/router';
+import { CanActivate, Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -7,6 +7,7 @@ import { CanActivate } from '@angular/router';
 export class AuthServiceService {
 
   private _isLoggedIn = false
+  constructor(private router: Router){}
 
   isLoggedIn(){
     return this._isLoggedIn
@@ -19,5 +20,6 @@ export class AuthServiceService {
   logout () {
     console.log(false)
     this._isLoggedIn = false
+    this.router.navigateByUrl('/home') //para que cuando hacemos logout nos lleve a home y no se queden los datos en pantalla
   }
 }
