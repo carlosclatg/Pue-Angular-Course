@@ -10,16 +10,19 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class PeopleListComponent implements OnInit, OnDestroy {
 
+  public people;
 
   constructor(
     private peopleService: PeopleService,  public activeRoute: ActivatedRoute
-    ) { }
+    ) { 
+
+    }
 
   ngOnInit() {
-
+    this.peopleService.getPeople().subscribe(people=> this.people = people)
   }
 
-  ngOnDestroy(): void {
+  ngOnDestroy() {
     console.log('In method on PeopleListCOmponent destroy')
   }
 

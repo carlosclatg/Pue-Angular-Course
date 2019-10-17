@@ -1,33 +1,28 @@
 import { Injectable } from '@angular/core';
 import { Observable, of  } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PeopleService {
 
-  people = [
-    {
-      id: 1,
-      name: 'Greter'
-    },
-    {
-      id: 2,
-      name: 'Carla'
-    }
-  ]
+  private peopleURL = 'api/people';
 
-  //constructor() { }
+  constructor(private http: HttpClient){}
 
-
-  getPersonById(id: number): Observable<{}>{
-    return of(this.people.find(p => p.id === id));
+  getPersonById(id: number){
+    console.log(123);
+    const peopleURL = `${this.peopleURL}/${id}`;
+    console.log(peopleURL)
+    return this.http.get(peopleURL);
   }
-
-
+  
+  
   getPeople(){
-    return of(this.people)
+    console.log(12345);
+    return this.http.get('api/people');
+      
   }
-
 
 }

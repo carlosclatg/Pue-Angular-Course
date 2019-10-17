@@ -10,6 +10,10 @@ import { ContactsModule } from './contacts/contacts.module';
 import { CustomRoutePreloader } from './custom-route-preloader';
 import { AuthServiceService } from './auth-service.service';
 import { AuthGuard } from './auth.guard';
+import { HttpClientModule }    from '@angular/common/http';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { PeopleService } from './people/people.service';
+import { InMemoryDataService } from './in-memory-data.service';
 
 const routes: Routes = [  
   {path: '' , redirectTo: '/home', pathMatch: 'full'}, //path
@@ -41,11 +45,15 @@ const routes: Routes = [
     AppComponent,
     HomeComponent,
     AboutComponent, 
-    NotFoundComponent
+    NotFoundComponent,
   ],
   imports: [ //Modulos a importar, un componente solo puede estar en un modulo.
     BrowserModule,
     RouterModule.forRoot(routes, {preloadingStrategy: CustomRoutePreloader}),
+    HttpClientModule,
+    HttpClientInMemoryWebApiModule.forRoot(
+      InMemoryDataService, { dataEncapsulation: false }
+    )
     //RouterModule.forRoot(routes, {preloadingStrategy: PreloadAllModules}), //manda en primera carga los necesarios y luego los que estan en lazy
   ],
   providers: [CustomRoutePreloader], //servicios.
